@@ -16,12 +16,12 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-const {createadmins,adminlogin,readAdmindata,deleteAdmindata} = require("../controller/admin-Controll")
+const {adminlogin,readAdmindata,deleteAdmindata} = require("../controller/admin-Controll")
 
 // registration
-router.post("/admincreate",verifyToken,createadmins)
+
 // login
-router.post("/adminlogin",verifyToken,adminlogin)
+router.post("/adminlogin",adminlogin)
 // read
 router.get("/adminread",verifyToken,readAdmindata)
 // delete

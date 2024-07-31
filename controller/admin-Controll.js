@@ -1,56 +1,26 @@
 const asyncHandler = require('express-async-handler')
 const AdminModel = require('../model/admin-Model')
-const MainAdmin = require('../model/Administrator')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const jwtSecretKey = "your_secret_key";
 const jwtExpiration = "160d";
 
-async function savetodb(){
-  try {
-    const existingUser = await AdminModel.findOne({ email: "anshad@gmail.com" });
-    if (existingUser) {
-      // Update the existing user
-      existingUser.name = "muhammed nawaf";
-      existingUser.phone = "7560869685";
-      existingUser.password = "nawaf1826";
-      existingUser.aboutme = "i am admin ";
-      existingUser.roll = "1";
-      await existingUser.save();
-      console.log('User updated:',existingUser);
-    } else {
-      // Create a new user
-      const newUser = await AdminModel.create({
-        name: "muhammed Anshad",
-        email: "anshad@gmail.com",
-        phone: "7560869685",
-        password: "nawaf1826",
-        aboutme: "i am admin ",
-        roll: "2",
-      });
-      console.log('Data saved:', newUser);
-    }
-  } catch (err) {
-    console.log('Error:', err);
-  }
-}
-savetodb()
-
-exports.createadmins = asyncHandler(async(req,res)=>{
-    const {name,email,password,phone,aboutme} = req.body;
-    try{
-      const data = await AdminModel.create({
-        name:name,
-        email:email,
-        password:password,
-        phone:phone,
-        aboutme:aboutme
-      })
-      res.json(data)
-    }catch(err){
-        console.log(err)
-    }
-})
+// async function savetodb(){
+//   try {
+//       const newUser = await AdminModel.create({
+//         name: "admin",
+//         email: "admin@gmail.com",
+//         phone: "7560869685",
+//         password: "admin123",
+//         aboutme: "iam admin",
+//         roll: "1",
+//       });
+//       console.log('Data saved:', newUser);
+//   } catch (err) {
+//     console.log('Error:', err);
+//   }
+// }
+// savetodb()
 
 
 exports.adminlogin = asyncHandler(async (req, res) => {
@@ -65,7 +35,7 @@ exports.adminlogin = asyncHandler(async (req, res) => {
 
     const userProfile = {
       id: adminData._id,
-      name: adminData.name || adminData.username,
+      name: adminData.name ,
       email: adminData.email,
       phone: adminData.phone,
       aboutme: adminData.aboutme,
