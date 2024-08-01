@@ -44,14 +44,17 @@ router.post("/add_1stBanner", upload.fields([
   { name: 'sliderimage', maxCount: 1 },
   { name: 'sliderlogoimage', maxCount: 1 },
 ]), verifyToken, addBanner);
-router.get("/get_banner",verifyToken,getBanner);
-router.delete("/delete_banner/:id",verifyToken,deleteBanner);
-router.get("/get_banner_for_update/:id",verifyToken,getbannerforupdate)
-router.put("/update_banner/:id", upload.fields([
+  router.get("/get_banner",verifyToken,getBanner);
+  router.delete("/delete_banner/:id",verifyToken,deleteBanner);
+  router.get("/get_banner_for_update/:id",verifyToken,getbannerforupdate)
+  router.put("/update_banner/:id", upload.fields([
   { name: 'thumbnailimage', maxCount: 1 },
   { name: 'sliderimage', maxCount: 1 },
   { name: 'sliderlogoimage', maxCount: 1 },
 ]), verifyToken, updateBanner);
+
+// public side
+router.get("/get_banner_for_user",getBanner);
 
 
 
