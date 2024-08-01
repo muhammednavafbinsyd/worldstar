@@ -54,6 +54,7 @@ router.post("/add_1stBanner", upload.fields([
 ]), verifyToken, updateBanner);
 
 // public side
+router.get("/get_logo_for_user",getlogo);
 router.get("/get_banner_for_user",getBanner);
 
 
