@@ -28,6 +28,11 @@ router.get("/adminread",verifyToken,readAdmindata)
 router.delete("/admindelete/:id",verifyToken,deleteAdmindata)
 
 //  worldStar Admin management  //
+// Menu
+const {createMenu,getMenu,deleteMenu} = require("../controller/pages-Controller")
+router.post("/add_menu",createMenu);
+router.get("/get_menu",getMenu);
+router.delete("/delete_menu_item/:id",verifyToken,deleteMenu);
 
 // logo
 const { addlogo ,getlogo,updateLogo ,deletelogo } = require('../controller/logo-Controll');
@@ -35,7 +40,7 @@ const { addlogo ,getlogo,updateLogo ,deletelogo } = require('../controller/logo-
 router.post('/addlogo', upload.single('logo'), addlogo);
 router.put('/updateLogo/:id', upload.single('logo'), updateLogo);
 router.get('/getlogo', verifyToken,getlogo);
-router.delete("/deleteLogo/:id",verifyToken,deletelogo)
+router.delete("/deleteLogo/:id",verifyToken,deletelogo);
 
 // fisrt banner 
 const {addBanner,getBanner,deleteBanner ,updateBanner ,getbannerforupdate} = require("../controller/banner-Controll")
@@ -56,6 +61,7 @@ router.post("/add_1stBanner", upload.fields([
 // public side
 router.get("/get_logo_for_user",getlogo);
 router.get("/get_banner_for_user",getBanner);
+router.get("/menus_from_admin",getMenu)
 
 
 
